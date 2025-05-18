@@ -11,9 +11,25 @@ class IngredientController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $ingredients = Ingredient::where('user_id', auth()->id())->latest()->get();
+        $query = Ingredient::where('user_id', auth()->id());
+
+        $sortType = $request->input('sort', 'expiration_asc');
+        switch ($sortType){
+            case 'expiration_asc':
+                $query -> orderby('expiration_date', 'asc');
+                break;
+            case 'expiration_desc':
+                $query -> orderby('expiration_date', 'desc');
+                break;
+            default :
+                $query -> latest();
+                break;
+        }
+
+        $ingredients = $query->get();
+
         return view('ingredients.index', compact('ingredients'));
     }
 
@@ -30,7 +46,7 @@ class IngredientController extends Controller
      */
     public function store(IngredientRequest $request)
     {
-        $validated = $request->validate();
+        $validated = $request->validated();
 
         Ingredient::create([
             'name' => $validated['name'],

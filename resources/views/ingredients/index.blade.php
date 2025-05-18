@@ -13,6 +13,14 @@
 
     {{-- 食材があるか確認 --}}
     @if ($ingredients->count())
+        <form method="GET" action="{{ route('ingredients.index') }}">
+            <div class="sort">
+                <select name="sort" onchange="this.form.submit()">
+                    <option value="expiration_asc" {{ request('sort')== 'expiration_asc' ? 'selected' : ''}}>賞味期限近い順</option>
+                    <option value="expiration_desc" {{ request('sort')== 'expiration_desc' ? 'selected' : ''}}>賞味期限遠い順</option>
+                </select>
+            </dev>
+        </form>
         <table class="table">
             <thead>
                 <tr>
