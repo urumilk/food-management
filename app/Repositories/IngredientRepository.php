@@ -16,5 +16,10 @@ class IngredientRepository{
         ]);
     }
 
+    public function delete($data)
+    {
+        $data->delete();
+    }
+
 
 }

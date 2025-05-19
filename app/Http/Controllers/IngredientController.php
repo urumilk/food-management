@@ -22,7 +22,7 @@ class IngredientController extends Controller
     {
         $this->ingredientService = $ingredientService;
     }
-    
+
     /**
      * Display a listing of the resource.
      */
@@ -83,9 +83,7 @@ class IngredientController extends Controller
     {
         $validated = $request->validated();
 
-        $ingredient = $this->ingredientService->storeIngredient($validated);
-        
-        
+        $this->ingredientService->storeIngredient($validated);       
         return redirect()->route('ingredients.index')->with('success', '食材を登録しました！');
 
     }
@@ -119,9 +117,15 @@ class IngredientController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+    // public function destroy(Ingredient $ingredient)
+    // {
+    //     $ingredient->delete();
+    //     return redirect()->route('ingredients.index');
+    // }
     public function destroy(Ingredient $ingredient)
     {
-        $ingredient->delete();
+        $this->ingredientService->destroyIngredient($ingredient);
         return redirect()->route('ingredients.index');
     }
+    
 }
