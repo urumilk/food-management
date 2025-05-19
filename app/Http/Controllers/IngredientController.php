@@ -6,9 +6,23 @@ use Illuminate\Http\Request;
 use App\Http\Requests\IngredientRequest;
 use App\Models\Ingredient;
 use Carbon\CarbonImmutable;
+use App\Services\IngredientService;
 
 class IngredientController extends Controller
 {
+
+    // public function __construct(
+    //     protected IngredientService $ingredientService
+    //     )
+    // {}
+
+    protected $ingredientService;
+
+    public function __construct(IngredientService $ingredientService)
+    {
+        $this->ingredientService = $ingredientService;
+    }
+    
     /**
      * Display a listing of the resource.
      */
@@ -52,17 +66,28 @@ class IngredientController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    // public function store(IngredientRequest $request)
+    // {
+    //     $validated = $request->validated();
+
+    //     Ingredient::create([
+    //         'name' => $validated['name'],
+    //         'expiration_date' => $validated['expiration_date'],
+    //         'user_id' => auth()->id(),
+    //     ]);
+
+    //     return redirect()->route('ingredients.index')->with('success', '食材を登録しました！');
+    // }
+
     public function store(IngredientRequest $request)
     {
         $validated = $request->validated();
 
-        Ingredient::create([
-            'name' => $validated['name'],
-            'expiration_date' => $validated['expiration_date'],
-            'user_id' => auth()->id(),
-        ]);
-
+        $ingredient = $this->ingredientService->storeIngredient($validated);
+        
+        
         return redirect()->route('ingredients.index')->with('success', '食材を登録しました！');
+
     }
 
     /**
