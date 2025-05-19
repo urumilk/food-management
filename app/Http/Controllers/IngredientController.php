@@ -29,7 +29,7 @@ class IngredientController extends Controller
                 break;
         }
         
-        $now = CarbonImmutable::today();
+        $now = CarbonImmutable::today();//now()の場合、小数点以下も表示される
 
         $ingredients = $query->get()->map( function ($ingredient) use ($now) {
             $expirationDate = CarbonImmutable::parse($ingredient->expiration_date);
