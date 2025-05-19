@@ -26,15 +26,22 @@
                 <tr>
                     <th>名前</th>
                     <th>賞味期限</th>
-                    <th>登録日</th>
+                    <th>残り日数</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($ingredients as $item)
                     <tr>
                         <td>{{ $item->name }}</td>
-                        <td>{{ $item->expiration_date ? \Carbon\Carbon::parse($item->expiration_date)->format('Y-m-d') : '未設定' }}</td>
-                        <td>{{ $item->created_at->format('Y-m-d') }}</td>
+                        <td>{{ $item->expiration_date ? \Carbon\Carbon::parse($item->expiration_date)->format('Y年m月d日') : '未設定' }}</td>
+                        <td>@if ($item->diffindays > 0)
+                                あと{{$item->diffindays}}日
+                            @elseif ($item->diffindays < 0)
+                                期限切れ！{{abs($item->diffindays)}}日経過
+                            @else
+                                今日が期限！
+                            @endif
+                        </td>
                         <td>
                             <!-- 編集ボタン -->
                             <a href="{{ route('ingredients.edit', $item->id) }}" class="text-blue-600 hover:underline">編集</a>
@@ -48,6 +55,9 @@
                         </td>
                     </tr>
                 @endforeach
+
+        
+                
             </tbody>
         </table>
     @else

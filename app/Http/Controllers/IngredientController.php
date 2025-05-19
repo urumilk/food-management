@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\IngredientRequest;
 use App\Models\Ingredient;
+use Carbon\CarbonImmutable;
 
 class IngredientController extends Controller
 {
@@ -27,8 +28,15 @@ class IngredientController extends Controller
                 $query -> latest();
                 break;
         }
+        
+        $now = CarbonImmutable::today();
 
-        $ingredients = $query->get();
+        $ingredients = $query->get()->map( function ($ingredient) use ($now) {
+            $expirationDate = CarbonImmutable::parse($ingredient->expiration_date);
+            $ingredient->diffindays = $now->diffInDays($expirationDate, false);
+            return $ingredient;
+        });
+
 
         return view('ingredients.index', compact('ingredients'));
     }
