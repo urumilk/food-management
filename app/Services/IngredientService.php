@@ -17,8 +17,8 @@ class IngredientService{
         $this->ingredientRepository->create($data);
     }
 
-    public function destroyIngredient($data)
+    public function destroyIngredient($id)
     {
-        $this->ingredientRepository->delete($data);
+        $this->ingredientRepository->destroy($id);
     }
 }

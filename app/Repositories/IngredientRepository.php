@@ -16,9 +16,9 @@ class IngredientRepository{
         ]);
     }
 
-    public function delete($data)
+    public function destroy($id)
     {
-        $data->delete();
+        Ingredient::destroy($id);
     }
 
 

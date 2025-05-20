@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\IngredientRequest;
-use App\Models\Ingredient;
-use Carbon\CarbonImmutable;
+use App\Models\Ingredient; //削除する
+use Carbon\CarbonImmutable;//削除する
 use App\Services\IngredientService;
 
 class IngredientController extends Controller
@@ -122,9 +122,9 @@ class IngredientController extends Controller
     //     $ingredient->delete();
     //     return redirect()->route('ingredients.index');
     // }
-    public function destroy(Ingredient $ingredient)
+    public function destroy($id)
     {
-        $this->ingredientService->destroyIngredient($ingredient);
+        $this->ingredientService->destroyIngredient($id);
         return redirect()->route('ingredients.index');
     }
     
