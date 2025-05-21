@@ -21,6 +21,13 @@ class IngredientRepository{
         Ingredient::destroy($id);
     }
 
+    public function update(array $data, $id)
+    {
+
+        $ingredient = Ingredient::find($id);
+        $ingredient -> update($data);
+    }
+
     public function findbyId($id)
     {
         $ingredient = Ingredient::find($id);

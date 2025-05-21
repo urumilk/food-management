@@ -27,4 +27,10 @@ class IngredientService{
         $ingredient = $this->ingredientRepository->findbyId($id);
         return $ingredient;
     }
+
+    public function updateIngredient(array $data, $id)
+    {
+
+        $this->ingredientRepository->update($data, $id);
+    }
 }

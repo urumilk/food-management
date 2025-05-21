@@ -108,10 +108,16 @@ class IngredientController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(IngredientRequest $request, Ingredient $ingredient)
-    {
-        $ingredient->update($request->validated());
+    // public function update(IngredientRequest $request, Ingredient $ingredient)
+    // {
+    //     $ingredient->update($request->validated());
+    //     return redirect()->route('ingredients.index');
+    // }
 
+    public function update(IngredientRequest $request, $id)
+    {
+        $validated = $request->validated();
+        $this->ingredientService->updateIngredient($validated, $id);
         return redirect()->route('ingredients.index');
     }
 
