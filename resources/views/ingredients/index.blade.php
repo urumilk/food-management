@@ -24,6 +24,7 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th>id</th>
                     <th>名前</th>
                     <th>賞味期限</th>
                     <th>残り日数</th>
@@ -32,9 +33,12 @@
             <tbody>
                 @foreach ($ingredients as $item)
                     <tr>
+                        <td>{{ $item->id }}</td>
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->expiration_date ? \Carbon\Carbon::parse($item->expiration_date)->format('Y年m月d日') : '未設定' }}</td>
-                        <td>@if ($item->diffindays > 0)
+                        <td>@if (is_null($item->expiration_date))
+                                未設定
+                            @elseif ($item->diffindays > 0)
                                 あと{{$item->diffindays}}日
                             @elseif ($item->diffindays < 0)
                                 期限切れ！{{abs($item->diffindays)}}日経過
