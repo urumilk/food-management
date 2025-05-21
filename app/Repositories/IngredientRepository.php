@@ -21,5 +21,12 @@ class IngredientRepository{
         Ingredient::destroy($id);
     }
 
+    public function findbyId($id)
+    {
+        $ingredient = Ingredient::find($id);
+        return $ingredient;
+
+    }
+
 
 }

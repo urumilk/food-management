@@ -21,4 +21,10 @@ class IngredientService{
     {
         $this->ingredientRepository->destroy($id);
     }
+
+    public function editIngredient($id)
+    {
+        $ingredient = $this->ingredientRepository->findbyId($id);
+        return $ingredient;
+    }
 }

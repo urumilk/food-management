@@ -91,16 +91,17 @@ class IngredientController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
+    // public function show(string $id)
+    // {
+    //     //
+    // }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Ingredient $ingredient)
+    public function edit($id)
     {
+        $ingredient = $this->ingredientService->editIngredient($id);
         return view('ingredients.edit', compact('ingredient'));
     }
 
