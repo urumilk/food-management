@@ -7,6 +7,23 @@ use Carbon\CarbonImmutable;
 
 class IngredientRepository{
 
+    public function index()
+    {
+        $data = Ingredient::where('user_id', auth()->id());
+
+        $now = CarbonImmutable::today();//now()の場合、小数点以下も表示される
+
+        $rawIngredients = $data->get()->map( function ($ingredient) use ($now) 
+            {
+                $expirationDate = CarbonImmutable::parse($ingredient->expiration_date);
+                $ingredient->diffindays = $now->diffInDays($expirationDate, false);
+                return $ingredient;
+            });
+
+        return $rawIngredients;
+
+    }
+
     public function create(array $data)
     {
         Ingredient::create([

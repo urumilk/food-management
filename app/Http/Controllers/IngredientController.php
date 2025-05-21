@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\IngredientRequest;
-use App\Models\Ingredient; //削除する
-use Carbon\CarbonImmutable;//削除する
 use App\Services\IngredientService;
 
 class IngredientController extends Controller
@@ -20,32 +18,39 @@ class IngredientController extends Controller
     /**
      * Display a listing of the resource.
      */
+    // public function index(Request $request)
+    // {
+    //     $query = Ingredient::where('user_id', auth()->id()); R
+
+    //     $sortType = $request->input('sort', 'expiration_asc'); R
+    //     switch ($sortType){ 
+    //         case 'expiration_asc':
+    //             $query -> orderby('expiration_date', 'asc');
+    //             break;
+    //         case 'expiration_desc':
+    //             $query -> orderby('expiration_date', 'desc');
+    //             break;
+    //         default :
+    //             $query -> latest();
+    //             break;
+    //     }
+        
+    //     $now = CarbonImmutable::today();//now()の場合、小数点以下も表示される R
+
+    //     $ingredients = $query->get()->map( function ($ingredient) use ($now) 
+    //         {
+    //             $expirationDate = CarbonImmutable::parse($ingredient->expiration_date);
+    //             $ingredient->diffindays = $now->diffInDays($expirationDate, false);
+    //             return $ingredient;
+    //         });
+
+
+    //     return view('ingredients.index', compact('ingredients'));
+    // }
+
     public function index(Request $request)
     {
-        $query = Ingredient::where('user_id', auth()->id());
-
-        $sortType = $request->input('sort', 'expiration_asc');
-        switch ($sortType){
-            case 'expiration_asc':
-                $query -> orderby('expiration_date', 'asc');
-                break;
-            case 'expiration_desc':
-                $query -> orderby('expiration_date', 'desc');
-                break;
-            default :
-                $query -> latest();
-                break;
-        }
-        
-        $now = CarbonImmutable::today();//now()の場合、小数点以下も表示される
-
-        $ingredients = $query->get()->map( function ($ingredient) use ($now) {
-            $expirationDate = CarbonImmutable::parse($ingredient->expiration_date);
-            $ingredient->diffindays = $now->diffInDays($expirationDate, false);
-            return $ingredient;
-        });
-
-
+        $ingredients = $this->ingredientService->indexIngredient($request);
         return view('ingredients.index', compact('ingredients'));
     }
 

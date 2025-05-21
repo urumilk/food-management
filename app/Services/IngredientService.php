@@ -12,6 +12,25 @@ class IngredientService{
         $this->ingredientRepository = $ingredientRepository;
     }
 
+    public function indexIngredient($request)
+    {
+        $rawIngredients = $this->ingredientRepository->index();
+        $sortType = $request->input('sort', 'expiration_asc');
+        switch ($sortType){ 
+            case 'expiration_asc':
+                $ingredients = $rawIngredients -> sortby('expiration_date');
+                break;
+            case 'expiration_desc':
+                $ingredients = $rawIngredients -> sortByDesc('expiration_date');
+                break;
+            default :
+                $ingredients = $rawIngredients -> latest();
+                break;
+        }
+
+        return $ingredients;
+    }
+
     public function storeIngredient(array $data)
     {
         $this->ingredientRepository->create($data);
