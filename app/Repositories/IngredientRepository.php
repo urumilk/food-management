@@ -16,19 +16,19 @@ class IngredientRepository{
         ]);
     }
 
-    public function destroy($id)
+    public function destroy(int $id)
     {
         Ingredient::destroy($id);
     }
 
-    public function update(array $data, $id)
+    public function update(array $data, int $id)
     {
 
         $ingredient = Ingredient::find($id);
         $ingredient -> update($data);
     }
 
-    public function findbyId($id)
+    public function findbyId(int $id)
     {
         $ingredient = Ingredient::find($id);
         return $ingredient;

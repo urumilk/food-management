@@ -10,12 +10,6 @@ use App\Services\IngredientService;
 
 class IngredientController extends Controller
 {
-
-    // public function __construct(
-    //     protected IngredientService $ingredientService
-    //     )
-    // {}
-
     protected $ingredientService;
 
     public function __construct(IngredientService $ingredientService)
@@ -99,7 +93,7 @@ class IngredientController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         $ingredient = $this->ingredientService->editIngredient($id);
         return view('ingredients.edit', compact('ingredient'));
@@ -114,7 +108,7 @@ class IngredientController extends Controller
     //     return redirect()->route('ingredients.index');
     // }
 
-    public function update(IngredientRequest $request, $id)
+    public function update(IngredientRequest $request, int $id)
     {
         $validated = $request->validated();
         $this->ingredientService->updateIngredient($validated, $id);
@@ -129,7 +123,7 @@ class IngredientController extends Controller
     //     $ingredient->delete();
     //     return redirect()->route('ingredients.index');
     // }
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $this->ingredientService->destroyIngredient($id);
         return redirect()->route('ingredients.index');

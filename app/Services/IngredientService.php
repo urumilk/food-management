@@ -17,18 +17,18 @@ class IngredientService{
         $this->ingredientRepository->create($data);
     }
 
-    public function destroyIngredient($id)
+    public function destroyIngredient(int $id)
     {
         $this->ingredientRepository->destroy($id);
     }
 
-    public function editIngredient($id)
+    public function editIngredient(int $id)
     {
         $ingredient = $this->ingredientRepository->findbyId($id);
         return $ingredient;
     }
 
-    public function updateIngredient(array $data, $id)
+    public function updateIngredient(array $data, int $id)
     {
 
         $this->ingredientRepository->update($data, $id);
