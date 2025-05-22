@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', '登録 -' . config('app.name'))
+
 @section('content')
 <form action="{{ route('ingredients.store') }}" method="POST">
     @csrf

@@ -1,5 +1,7 @@
 @extends('layouts.app') {{-- ログイン機能がある場合のレイアウト。なければ 'layout' などに変更 --}}
 
+@section('title', '食材一覧 -' . config('app.name'))
+
 @section('content')
 <div class="container">
     <h1>食材一覧</h1>

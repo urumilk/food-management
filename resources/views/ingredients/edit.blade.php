@@ -1,4 +1,7 @@
 @extends('layouts.app')
+
+@section('title', '編集 -' . config('app.name'))
+
 @section('content')
 <form action="{{ route('ingredients.update', $ingredient->id)}}" method="POST">
     @csrf
