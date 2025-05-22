@@ -9,6 +9,7 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
 
         <!-- Styles / Scripts -->
         @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
@@ -52,7 +53,7 @@
         <div class="flex items-center justify-center w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
             <div class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-green-100 to-white px-4">
                 <div class="max-w-2xl text-center">
-                    <h1 class="text-4xl md:text-5xl font-bold text-green-700 mb-4">食材管理アプリ</h1>
+                    <h1 class="text-4xl md:text-5xl font-bold font-yusei text-green-700 mb-4">食材管理アプリ</h1>
                     <p class="text-lg text-gray-700 mb-8">
                         食材の賞味期限、もう切らしてない？<br>
                         冷蔵庫の中をアプリでカンタン管理。
