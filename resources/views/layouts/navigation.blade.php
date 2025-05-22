@@ -2,9 +2,9 @@
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
-            <div class="shrink-0 flex items-center">
+            <a href="{{ route('ingredients.index') }}" class="shrink-0 flex items-center">
                 食材管理
-            </div>
+            </a>
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
