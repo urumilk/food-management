@@ -3,6 +3,9 @@
 @section('title', '食材一覧 -' . config('app.name'))
 
 @section('content')
+
+@include('ingredients.recommend-ingredient')
+
 <div class="container">
     <h1>食材一覧</h1>
 
