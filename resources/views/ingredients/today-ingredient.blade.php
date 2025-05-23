@@ -1,5 +1,12 @@
 <div class="speech-bubble">
-    <p>今日はこの食材を使おう！</p>
+    <p>今日はこれを使おう！</p>
+    @foreach ($ingredients as $item)
+        <div class="today-ingredient">
+            @if ($item->diffindays == 0)
+                {{$item->name}}
+            @endif
+        </div>
+    @endforeach
 </div>
 
 <style>
@@ -26,4 +33,5 @@
     display: block;
     width: 0;
 }
+
 </style>

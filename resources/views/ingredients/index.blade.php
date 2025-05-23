@@ -4,7 +4,7 @@
 
 @section('content')
 
-@include('ingredients.recommend-ingredient')
+@include('ingredients.today-ingredient')
 
 <div class="container">
     <h1>食材一覧</h1>
