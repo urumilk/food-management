@@ -8,6 +8,9 @@
 
 <div class="container">
     <h1>食材一覧</h1>
+    <div id="app">
+            <ingredient-like></ingredient-like>
+    </div>
 
     {{-- フラッシュメッセージ --}}
     @if (session('success'))
@@ -69,6 +72,7 @@
                 
             </tbody>
         </table>
+        
     @else
         <p>現在、登録されている食材はありません。</p>
     @endif
