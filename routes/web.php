@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\IngredientController;
+use App\Http\Controllers\FavoriteIngredientController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,6 +20,9 @@ Route::middleware('auth')->group(function () {
 
     // 食材管理ルート
     Route::resource('ingredients', IngredientController::class);
+
+    // お気に入り食材ルート
+    Route::resource('favorite-ingredients', FavoriteIngredientController::class);
 });
 
 require __DIR__.'/auth.php';
