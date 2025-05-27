@@ -2,6 +2,8 @@
 namespace App\Services;
 
 use App\Repositories\IngredientRepository;
+use App\Repositories\FavoriteIngredientRepository;
+
 
 class IngredientService{
     
@@ -29,6 +31,11 @@ class IngredientService{
         }
 
         return $ingredients;
+    }
+    
+    public function recommendFromFavorites()
+    {
+        return $this->ingredientRepository->recommendFromFavorites();
     }
 
     public function storeIngredient(array $data)

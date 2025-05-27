@@ -15,4 +15,18 @@
         </span>
     </button>
 </form>
+
+<h2>おすすめの食材から選ぶ</h2>
+<ul>
+@foreach ($recommend as $item)
+    <li>
+        {{ $item->name }}
+        <form action="{{ route('ingredients.store') }}" method="POST" style="display:inline;">
+            @csrf
+            <input type="hidden" name="name" value="{{ $item->name }}">
+            <button type="submit">追加</button>
+        </form>
+    </li>
+@endforeach
+</ul>
 @endsection

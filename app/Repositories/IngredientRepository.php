@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Ingredient;
+use App\Models\FavoriteIngredient;
 use Carbon\CarbonImmutable;
 
 class IngredientRepository{
@@ -24,11 +25,17 @@ class IngredientRepository{
 
     }
 
+    public function recommendFromFavorites()
+    {
+        $user = auth()->user();
+        return $user->favoriteIngredients()->get();
+    }
+
     public function create(array $data)
     {
         Ingredient::create([
             'name' => $data['name'],
-            'expiration_date' => $data['expiration_date'],
+            'expiration_date' => $data['expiration_date'] ?? null,
             'user_id' => auth()->id(),
         ]);
     }

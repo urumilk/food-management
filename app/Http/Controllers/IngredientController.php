@@ -59,7 +59,8 @@ class IngredientController extends Controller
      */
     public function create()
     {
-        return view('ingredients.create');
+        $recommend = $this->ingredientService->recommendFromFavorites();
+        return view('ingredients.create', compact('recommend'));
     }
 
     /**
