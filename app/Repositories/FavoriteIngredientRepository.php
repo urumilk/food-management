@@ -8,7 +8,8 @@ class FavoriteIngredientRepository{
 
     public function index()
     {
-        FavoriteIngredient::where('user_id', auth()->id())->get();
+        return FavoriteIngredient::where('user_id', auth()->id())->get();
+    
     }
 
 }

@@ -14,7 +14,7 @@ class FavoriteIngredientService{
 
     public function indexFavoriteIngredient()
     {
-        $this->favoriteIngredientRepository->index();
+        return $this->favoriteIngredientRepository->index();
     }
 
 }
