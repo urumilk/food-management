@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\FavoriteIngredientRequest;
 use App\Services\FavoriteIngredientService;
 
 class FavoriteIngredientController extends Controller
@@ -34,9 +35,23 @@ class FavoriteIngredientController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(FavoriteIngredientRequest $request)
     {
-        //
+        try {
+        $validated = $request->validated();
+        \Log::info('バリデーション通過', $validated);
+
+        $ingredient = $this->favoriteIngredientService->storeFavoriteIngredient($validated);
+        return response()->json($ingredient, 201);
+        } catch (\Throwable $e) {
+        \Log::error('エラー発生: ' . $e->getMessage());
+        return response()->json(['error' => $e->getMessage()], 500);
+        }
+
+        // $validated = $request->validated();
+        // dd($validated);
+        // $ingredient = $this->favoriteIngredientService->storeFavoriteIngredient($validated);
+        // return response()->json($ingredient, 201);
     }
 
     /**

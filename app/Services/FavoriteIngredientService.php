@@ -17,4 +17,10 @@ class FavoriteIngredientService{
         return $this->favoriteIngredientRepository->index();
     }
 
+    public function storeFavoriteIngredient(array $data)
+    {
+        $ingredient = $this->favoriteIngredientRepository->store($data);
+        return $ingredient;
+    }
+
 }

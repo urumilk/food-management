@@ -12,4 +12,14 @@ class FavoriteIngredientRepository{
     
     }
 
+    public function store(array $data)
+    {
+        $ingredient = FavoriteIngredient::create([
+            'name' => $data['name'],
+            'user_id' => auth()->id(),
+        ]);
+        
+        return $ingredient;
+    }
+
 }

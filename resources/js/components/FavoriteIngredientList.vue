@@ -1,5 +1,4 @@
 <template>
-あああああ
   <div>
     <table class="table">
       <thead>
@@ -13,7 +12,7 @@
         </tr>
         <tr>
           <td>
-            <input v-model="newItem" @keyup.enter="addItem" placeholder="食材名を入力">
+            <input v-model="newItem" @keyup.enter.prevent="addItem" placeholder="食材名を入力">
           </td>
         </tr>
       </tbody>
@@ -22,20 +21,31 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   props: ['initialItems'],
+
   data() {
     return {
-      items: this.initialItems,
-      newItem: ''
+        items: this.initialItems,
+        newItem: ''
     }
   },
+
   methods: {
-    addItem() {
-      if (this.newItem.trim() !== '') {
-        this.items.push({ name: this.newItem });
+    async addItem() {
+      if (this.newItem.trim() === '') return;
+
+      try {
+        const response = await axios.post('/favorite-ingredients', {
+          name: this.newItem
+        });
+
+        this.items.push(response.data);  // DB保存成功 → 表示に追加
         this.newItem = '';
-        // 実際はここでaxiosなどでサーバーにPOSTも必要
+      } catch (error) {
+        console.error('追加に失敗しました', error);
       }
     }
   }
