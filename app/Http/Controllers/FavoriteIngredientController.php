@@ -19,8 +19,8 @@ class FavoriteIngredientController extends Controller
      */
     public function index()
     {
-        $favoriteIngredient = $this->favoriteIngredientService->indexFavoriteIngredient();
-        return view('favorite_ingredients.index', compact('favoriteIngredient'));
+        $favoriteIngredients = $this->favoriteIngredientService->indexFavoriteIngredient();
+        return view('favorite_ingredients.index', compact('favoriteIngredients'));
     }
 
     /**

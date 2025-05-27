@@ -3,10 +3,16 @@
 @section('title', 'お気に入り食材 -' . config('app.name'))
 
 @section('content')
+<div id="app">
+    <favorite-ingredient-list :initial-items='@json($favoriteIngredients)' />
+</div>
+<div id="app">
+    <ingredient-like></ingredient-like>
+</div>
 <div class="container">
 
     {{-- お気に入り食材があるか確認 --}}
-    @if ($favoriteIngredient->count())
+    @if ($favoriteIngredients->count())
         <!-- <form method="GET" action="{{ route('favorite-ingredients.index') }}">
             <div class="sort">
                 <select name="sort" onchange="this.form.submit()">
@@ -23,7 +29,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($favoriteIngredient as $item)
+                @foreach ($favoriteIngredients as $item)
                     <tr>
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->name }}</td>
