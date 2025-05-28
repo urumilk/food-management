@@ -29,22 +29,21 @@
                 </select>
             </dev>
         </form>
-        <table class="table">
+        <table class="table border-collapse border border-gray-200 border-4 w-full">
             <thead>
                 <tr>
-                    <th>id</th>
-                    <th>名前</th>
-                    <th>賞味期限</th>
-                    <th>残り日数</th>
+                    <th class="border border-gray-200 border-4 bg-gray-200 h-10">名前</th>
+                    <th class="border border-gray-200 border-4 bg-gray-200 h-10">賞味期限</th>
+                    <th class="border border-gray-200 border-4 bg-gray-200 h-10">残り日数</th>
+                    <th class="border border-gray-200 border-4 bg-gray-200 h-10"></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($ingredients as $item)
                     <tr>
-                        <td>{{ $item->id }}</td>
-                        <td>{{ $item->name }}</td>
-                        <td>{{ $item->expiration_date ? \Carbon\Carbon::parse($item->expiration_date)->format('Y年m月d日') : '未設定' }}</td>
-                        <td>@if (is_null($item->expiration_date))
+                        <td class="border border-gray-200 border-4">{{ $item->name }}</td>
+                        <td class="border border-gray-200 border-4">{{ $item->expiration_date ? \Carbon\Carbon::parse($item->expiration_date)->format('Y年m月d日') : '未設定' }}</td>
+                        <td class="border border-gray-200 border-4">@if (is_null($item->expiration_date))
                                 未設定
                             @elseif ($item->diffindays > 0)
                                 あと{{$item->diffindays}}日
@@ -54,7 +53,7 @@
                                 今日が期限！
                             @endif
                         </td>
-                        <td>
+                        <td class="border border-gray-200 border-4 text-center">
                             <!-- 編集ボタン -->
                             <a href="{{ route('ingredients.edit', $item->id) }}" class="text-blue-600 hover:underline">編集</a>
 
