@@ -22,8 +22,10 @@ class IngredientRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'expiration_date' => 'nullable|date',
+            'name' => 'required|array',
+            'name.*' => 'required|string|max:255',
+            'expiration_date' => 'nullable|array',
+            'expiration_date.*' => 'nullable|date',
         ];
     }
 }

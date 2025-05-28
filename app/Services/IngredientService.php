@@ -32,15 +32,20 @@ class IngredientService{
 
         return $ingredients;
     }
-    
+
     public function recommendFromFavorites()
     {
         return $this->ingredientRepository->recommendFromFavorites();
     }
 
-    public function storeIngredient(array $data)
+    public function storeIngredient($names, $dates)
     {
-        $this->ingredientRepository->create($data);
+        if (!$names || !is_array($names)) 
+        {
+            return back()->withErrors(['name' => '食材名は必須です'])->withInput();
+        }
+
+        $this->ingredientRepository->create($names, $dates);
     }
 
     public function destroyIngredient(int $id)

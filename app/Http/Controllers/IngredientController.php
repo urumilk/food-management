@@ -81,9 +81,10 @@ class IngredientController extends Controller
 
     public function store(IngredientRequest $request)
     {
-        $validated = $request->validated();
+        $names = $request->input('name');
+        $dates = $request->input('expiration_date');
 
-        $this->ingredientService->storeIngredient($validated);       
+        $this->ingredientService->storeIngredient($names, $dates);       
         return redirect()->route('ingredients.index')->with('success', '食材を登録しました！');
 
     }

@@ -31,13 +31,17 @@ class IngredientRepository{
         return $user->favoriteIngredients()->get();
     }
 
-    public function create(array $data)
+    public function create($names, $dates)
     {
-        Ingredient::create([
-            'name' => $data['name'],
-            'expiration_date' => $data['expiration_date'] ?? null,
-            'user_id' => auth()->id(),
-        ]);
+        foreach ($names as $i => $name) {
+            if (empty($name)) continue;
+
+            Ingredient::create([
+                'name' => $name,
+                'expiration_date' => $dates[$i] ?? null,
+                'user_id' => auth()->id(),
+            ]);
+        }
     }
 
     public function destroy(int $id)
