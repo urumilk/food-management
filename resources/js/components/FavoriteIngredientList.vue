@@ -1,19 +1,17 @@
 <template>
   <div>
-    <table class="table">
+    <table class="table border-collapse border border-gray-200 border-4 w-full">
       <thead>
         <tr>
-          <th>名前</th>
+          <th class="border border-gray-200 border-4 bg-gray-200 h-10">名前</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(item, index) in items" :key="index">
-          <td>{{ item.name }}</td>
+          <td class="border border-gray-200 border-4">{{ item.name }}</td>
         </tr>
         <tr>
-          <td>
-            <input v-model="newItem" @keyup.enter.prevent="addItem" placeholder="食材名を入力">
-          </td>
+          <input class="border border-gray-200 border-4" v-model="newItem" @keyup.enter.prevent="addItem" placeholder="食材名を入力">
         </tr>
       </tbody>
     </table>
