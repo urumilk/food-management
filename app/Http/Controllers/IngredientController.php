@@ -51,6 +51,7 @@ class IngredientController extends Controller
     public function index(Request $request)
     {
         $ingredients = $this->ingredientService->indexIngredient($request);
+        
         return view('ingredients.index', compact('ingredients'));
     }
 
@@ -134,6 +135,17 @@ class IngredientController extends Controller
     {
         $this->ingredientService->destroyIngredient($id);
         return redirect()->route('ingredients.index');
+    }
+
+    public function bulkDelete(Request $request)
+    {
+        $ids = $request->input('ids', []);
+        if(!empty($ids)){
+            $this->ingredientService->bulkDeleteIngredient($ids);
+            return redirect()->route('ingredients.index')->with('success', '選択した食材を削除しました。');
+        }
+        
+        return redirect()->back()->withErrors(['message' => '削除する項目を選択してください。']);
     }
     
 }

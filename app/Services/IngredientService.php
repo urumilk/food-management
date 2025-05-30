@@ -64,4 +64,10 @@ class IngredientService{
 
         $this->ingredientRepository->update($data, $id);
     }
+
+    public function bulkDeleteIngredient(array $ids)
+    {
+        $this->ingredientRepository->bulkDelete($ids);
+    }
+
 }

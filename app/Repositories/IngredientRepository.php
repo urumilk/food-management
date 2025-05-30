@@ -63,5 +63,9 @@ class IngredientRepository{
 
     }
 
+    public function bulkDelete($ids){
+        Ingredient::whereIn('id', $ids)->delete();
+    }
+
 
 }

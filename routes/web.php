@@ -19,6 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // 食材管理ルート
+    Route::delete('/ingredients/bulk-delete', [IngredientController::class, 'bulkDelete'])->name('ingredients.bulkDelete');
     Route::resource('ingredients', IngredientController::class);
 
     // お気に入り食材ルート
