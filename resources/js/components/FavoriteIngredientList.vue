@@ -3,7 +3,7 @@
     <table class="table border-collapse border border-gray-200 border-4 w-full">
       <thead>
         <tr>
-          <th class="border border-gray-200 border-4 bg-gray-200 h-10">名前</th>
+          <th class="border border-gray-200 border-4 h-10">名前</th>
         </tr>
       </thead>
       <tbody>

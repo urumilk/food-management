@@ -8,9 +8,6 @@
 
 <div class="container">
     <h1>食材一覧</h1>
-    <div id="app">
-            <ingredient-like></ingredient-like>
-    </div>
 
     {{-- フラッシュメッセージ --}}
     @if (session('success'))
@@ -23,11 +20,11 @@
     @if ($ingredients->count())
         <form method="GET" action="{{ route('ingredients.index') }}">
             <div class="sort">
-                <select name="sort" onchange="this.form.submit()">
+                <select name="sort" onchange="this.form.submit()" class="my-3 bg-sky-300 text-white px-4 py-2 pr-10 border-0 rounded">
                     <option value="expiration_asc" {{ request('sort')== 'expiration_asc' ? 'selected' : ''}}>賞味期限近い順</option>
                     <option value="expiration_desc" {{ request('sort')== 'expiration_desc' ? 'selected' : ''}}>賞味期限遠い順</option>
                 </select>
-            </dev>
+            </div>
         </form>
         <form method="POST" action="{{ route('ingredients.bulkDelete') }}">
             @csrf
@@ -45,12 +42,12 @@
                 <tbody>
                     @foreach ($ingredients as $item)
                         <tr>
-                            <td>
+                            <td class="border border-gray-200 border-4 text-center">
                                 <input type="checkbox" name="ids[]" value="{{ $item->id }}">
                             </td>
-                            <td class="border border-gray-200 border-4">{{ $item->name }}</td>
-                            <td class="border border-gray-200 border-4">{{ $item->expiration_date ? \Carbon\Carbon::parse($item->expiration_date)->format('Y年m月d日') : '未設定' }}</td>
-                            <td class="border border-gray-200 border-4">@if (is_null($item->expiration_date))
+                            <td class="border border-gray-200 border-4 text-center">{{ $item->name }}</td>
+                            <td class="border border-gray-200 border-4 text-center">{{ $item->expiration_date ? \Carbon\Carbon::parse($item->expiration_date)->format('Y年m月d日') : '未設定' }}</td>
+                            <td class="border border-gray-200 border-4 text-center">@if (is_null($item->expiration_date))
                                     未設定
                                 @elseif ($item->diffindays > 0)
                                     あと{{$item->diffindays}}日
@@ -76,14 +73,18 @@
                     @endforeach
                 </tbody>
             </table>
-            <button type="submit" class="mt-4 bg-red-500 text-white px-4 py-2 rounded">選択した食材を削除</button>
+            <button type="submit" class="mt-4 bg-sky-300 text-white px-4 py-2 rounded">選択した食材を削除</button>
         </form>
+        
         
     @else
         <p>現在、登録されている食材はありません。</p>
     @endif
 
-    <a href="{{ route('ingredients.create') }}" class="btn btn-primary mt-3">新しい食材を追加</a>
+    <a href="{{ route('ingredients.create') }}" class="btn btn-primary mt-4 bg-orange-400 text-white px-4 py-2 rounded">買った食材を追加する</a>
+    <div class="d-flex justify-content-between align-items-center">
+        {{ $ingredients->links() }}
+    </div>
 </div>
 
 <script>

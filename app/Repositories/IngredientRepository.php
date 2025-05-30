@@ -11,7 +11,7 @@ class IngredientRepository{
     public function index()
     {
         $data = Ingredient::where('user_id', auth()->id());
-
+        //dd($data);
         $now = CarbonImmutable::today();//now()の場合、小数点以下も表示される
 
         $rawIngredients = $data->get()->map( function ($ingredient) use ($now) 

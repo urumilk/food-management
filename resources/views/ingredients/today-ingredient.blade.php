@@ -1,7 +1,7 @@
-@if($ingredients -> contains(fn($i) => $i->diffindays == 0))
+@if($allIngredients -> contains(fn($i) => $i->diffindays == 0))
 <div class="speech-bubble">
     <p>今日はこれを使おう！</p>
-    @foreach ($ingredients as $item)
+    @foreach ($allIngredients as $item)
         @if ($item->diffindays == 0)
             <div class="today-ingredient">{{$item->name}}</div>
         @endif

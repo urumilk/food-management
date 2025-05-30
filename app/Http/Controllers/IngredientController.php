@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\IngredientRequest;
 use App\Services\IngredientService;
+use Illuminate\Pagination\Paginator;
 
 class IngredientController extends Controller
 {
@@ -51,8 +52,9 @@ class IngredientController extends Controller
     public function index(Request $request)
     {
         $ingredients = $this->ingredientService->indexIngredient($request);
-        
-        return view('ingredients.index', compact('ingredients'));
+        $allIngredients = $this->ingredientService->allIngredient();
+
+        return view('ingredients.index', compact('ingredients', 'allIngredients'));
     }
 
     /**

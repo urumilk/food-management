@@ -3,6 +3,7 @@ namespace App\Services;
 
 use App\Repositories\IngredientRepository;
 use App\Repositories\FavoriteIngredientRepository;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 
 class IngredientService{
@@ -20,17 +21,38 @@ class IngredientService{
         $sortType = $request->input('sort', 'expiration_asc');
         switch ($sortType){ 
             case 'expiration_asc':
-                $ingredients = $rawIngredients -> sortby('expiration_date');
+                $sortedIngredients = $rawIngredients -> sortby('expiration_date');
                 break;
             case 'expiration_desc':
-                $ingredients = $rawIngredients -> sortByDesc('expiration_date');
+                $sortedIngredients = $rawIngredients -> sortByDesc('expiration_date');
                 break;
             default :
-                $ingredients = $rawIngredients -> latest();
+                $sortedIngredients = $rawIngredients -> latest();
                 break;
         }
 
+        $page = $request->get('page', 1);
+        $perPage = 10;
+        $currentPageData = $sortedIngredients->slice(($page-1) * $perPage, $perPage)->values();
+
+        $ingredients = new LengthAwarePaginator(
+            $currentPageData, 
+            $rawIngredients->count(), 
+            $perPage, 
+            $page,
+            [
+                'path' => request()->url(),
+                'query' => request()->query(),
+            ]
+        );
+
         return $ingredients;
+    }
+
+    public function allIngredient()
+    {
+        return $this->ingredientRepository->index();
+
     }
 
     public function recommendFromFavorites()
