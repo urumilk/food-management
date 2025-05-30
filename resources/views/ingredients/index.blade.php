@@ -65,7 +65,12 @@
                                 <a href="{{ route('ingredients.edit', $item->id) }}" class="text-blue-600 hover:underline">編集</a>
 
                                 <!-- 削除ボタン -->
-                                
+                                <form action="{{ route('ingredients.destroy', $item->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('本当に削除しますか？');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-red-600 hover:underline ml-2">削除</buttom>
+                                </form>
+
                             </td>
                         </tr>
                     @endforeach
