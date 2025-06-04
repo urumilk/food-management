@@ -13,11 +13,10 @@
 
         @foreach ($names as $i => $name )
         <div class="flex items-center space-x-2 mb-2">
-            <input type="text" name="name[]" placeholder="食材名"
+            <input type="text" name="name[]" id="name" placeholder="食材名"
                 value="{{ $name }}"
-
                 class="border px-2 py-1 h-10 rounded">
-            <input type="date" name="expiration_date[]"
+            <input type="date" name="expiration_date[]" placeholder="賞味期限"
                 value="{{ $dates[$i] ?? '' }}"
                 class="border px-2 py-1 h-10 rounded">
             
