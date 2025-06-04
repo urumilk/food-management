@@ -51,8 +51,9 @@ docker compose exec app php artisan db:seed
 ```
 ## ローカル環境でのアクセス
 http://localhost:8888   
+
 ※ ポート番号は `infra/docker-compose.yml` にて設定しています。  
-　 `infra/` ディレクトリはGit管理対象外です。 
+`infra/` ディレクトリはGit管理対象外です。 
 
 ## 今後の実装予定
 - 食材カテゴリ
