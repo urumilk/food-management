@@ -1,5 +1,5 @@
 # 食材管理アプリ
-![TOPイメージ](app/public/images/TOP.png)
+![TOPイメージ](./public/images/TOP.png)
 このアプリは、冷蔵庫の中身を管理するシステムです。  
 いつの間にか期限切れになっちゃった！という事態を防ぎます。
 
@@ -11,7 +11,7 @@
 
 ## 技術スタック
 
-![技術スタック](app/public/images/Technology.png)
+![技術スタック](./public/images/Technology.png)
 
 ## セットアップ手順（Docker使用）
 
