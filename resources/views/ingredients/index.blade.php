@@ -74,14 +74,16 @@
                 </tbody>
             </table>
             <button type="submit" class="mt-4 bg-sky-300 text-white px-4 py-2 rounded">選択した食材を削除</button>
+            <a href="{{ route('ingredients.create') }}" class="btn btn-primary mt-4 bg-orange-400 text-white px-4 py-2 rounded">買った食材を追加する</a>
         </form>
-        
-        
+
     @else
         <p>現在、登録されている食材はありません。</p>
+        <div class="mt-6">
+            <a href="{{ route('ingredients.create') }}" class="btn btn-primary mt-4 bg-orange-400 text-white px-4 py-2 rounded">買った食材を追加する</a>
+        </div>
     @endif
 
-    <a href="{{ route('ingredients.create') }}" class="btn btn-primary mt-4 bg-orange-400 text-white px-4 py-2 rounded">買った食材を追加する</a>
     <div class="d-flex justify-content-between align-items-center">
         {{ $ingredients->links() }}
     </div>
@@ -93,6 +95,6 @@
         const checkboxes = document.querySelectorAll('input[name="ids[]"]');
         checkboxes.forEach(cb => cb.checked = this.checked);
     });
-    
+
 </script>
 @endsection
