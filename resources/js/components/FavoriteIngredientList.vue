@@ -1,16 +1,16 @@
 <template>
     <div>
         <table
-            class="table border-collapse border border-gray-200 border-4 w-full"
+            class="table border-collapse w-full"
         >
             <thead>
                 <tr>
-                    <th class="border border-gray-200 border-4 h-10">名前</th>
+                    <th class="border border-purple-100 bg-purple-100 border-4 h-10">名前</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="(item, index) in items" :key="index">
-                    <td class="border border-gray-200 border-4">
+                    <td class="border border-purple-100 border-4">
                         {{ item.name }}
                     </td>
                 </tr>
