@@ -4,10 +4,7 @@
 
 @section('content')
 <div id="app">
-    <favorite-ingredient-list :initial-items='@json($favoriteIngredients)' />
-</div>
-<div id="app">
-    <ingredient-like></ingredient-like>
+    <favorite-ingredient-app :initial-items='@json($favoriteIngredients)' />
 </div>
 
 @endsection
