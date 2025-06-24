@@ -6,6 +6,5 @@
 <div id="app">
     <favorite-ingredient-app :initial-items='@json($favoriteIngredients)' />
 </div>
-
 @endsection
 

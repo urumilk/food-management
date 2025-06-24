@@ -11,7 +11,6 @@
 <template>
     <div>
         <FavoriteIngredientList :initial-items="initialItems"/>
-        <h1>テスト</h1>
     </div>
 </template>
 

@@ -16,12 +16,20 @@
                 </tr>
             </tbody>
         </table>
-        <input
-            class="border border-gray-200 border-4"
-            v-model="newItem"
-            @keydown.enter="addItem"
-            placeholder="食材名を入力"
-        />
+        <div class="flex gap-2 pt-4">
+            <input
+                class="border-4 border-orange-300 focus:border-orange-400 focus:ring-0 px-4 py-2 rounded w-64"
+                v-model="newItem"
+                @keydown.enter="addItem"
+                placeholder="食材名を入力"
+            />
+            <button
+                class="bg-orange-400 text-white px-4 py-2 rounded hover:bg-orange-500"
+                @click="addItem"
+            >
+            追加
+            </button>
+        </div>
     </div>
 </template>
 
