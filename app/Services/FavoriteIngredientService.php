@@ -23,4 +23,9 @@ class FavoriteIngredientService{
         return $ingredient;
     }
 
+    public function bulkDeleteIngredient(array $ids)
+    {
+        $this->favoriteIngredientRepository->bulkDelete($ids);
+    }
+
 }

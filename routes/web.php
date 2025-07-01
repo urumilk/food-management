@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('ingredients', IngredientController::class);
 
     // お気に入り食材ルート
+    Route::delete('/favorite-ingredients/bulk-delete', [FavoriteIngredientController::class, 'bulkDelete'])->name('favorite-ingredients.bulkDelete');
     Route::resource('favorite-ingredients', FavoriteIngredientController::class);
 });
 

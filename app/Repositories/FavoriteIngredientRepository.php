@@ -9,7 +9,7 @@ class FavoriteIngredientRepository{
     public function index()
     {
         return FavoriteIngredient::where('user_id', auth()->id())->get();
-    
+
     }
 
     public function store(array $data)
@@ -18,10 +18,16 @@ class FavoriteIngredientRepository{
             'name' => $data['name'],
             'user_id' => auth()->id(),
         ]);
-        
+
         return $ingredient;
     }
 
-    
+    public function bulkDelete(array $ids)
+    {
+        FavoriteIngredient::whereIn('id', $ids)->delete();
+    }
+
+
+
 
 }

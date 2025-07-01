@@ -85,4 +85,19 @@ class FavoriteIngredientController extends Controller
     {
         //
     }
+
+    public function bulkDelete(Request $request)
+    {
+        $ids = $request->input('ids', []);
+        if(!empty($ids)){
+            $this->favoriteIngredientService->bulkDeleteIngredient($ids);
+            return response()->json([
+                'message' => '選択した食材を削除しました。'
+            ], 200);
+        }
+
+        return response()->json([
+                'message' => '削除する項目を選択してください。'
+            ], 422);
+    }
 }
