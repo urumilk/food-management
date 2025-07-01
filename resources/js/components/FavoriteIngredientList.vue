@@ -5,7 +5,9 @@
         >
             <thead>
                 <tr>
-                    <th class="border border-purple-100 bg-purple-100 border-4 h-10"><input type="checkbox" id="checkAll"></th>
+                    <th class="border border-purple-100 bg-purple-100 border-4 h-10">
+                        <input type="checkbox" @change="toggleAll" :checked="isAllChecked">
+                    </th>
                     <th class="border border-purple-100 bg-purple-100 border-4 h-10">名前</th>
                 </tr>
             </thead>
@@ -40,7 +42,7 @@
 
 <script setup>
 import axios from "axios";
-import { ref, watch } from 'vue';
+import { ref, watch, computed } from 'vue';
 
 const props = defineProps({
         initialItems: {
@@ -80,6 +82,19 @@ const addItem = async () => {
 const selectedIds = ref([])
 console.log(selectedIds.value)
 
+const isAllChecked = computed(() => selectedIds.value.length === items.value.length)
+
+const toggleAll = () => {
+    if(isAllChecked.value) {
+        selectedIds.value = []
+    }
+    else{
+        selectedIds.value = items.value.map(item => item.id)
+    }
+    console.log(selectedIds.value)
+}
+
+
 const bulkDelete = async () => {
     if (selectedIds.value.length === 0){
         alert('削除する食材を選択してください')
@@ -91,9 +106,9 @@ const bulkDelete = async () => {
     try{
         await axios.delete('/favorite-ingredients/bulk-delete', {
             data: { ids: selectedIds.value },
-            headers: {
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-            },
+            // headers: {
+            //     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            // },
         })
             // 成功後：削除したIDをリストから除外
             items.value = items.value.filter(item => !selectedIds.value.includes(item.id))
