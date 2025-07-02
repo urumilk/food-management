@@ -19,7 +19,7 @@
             <input type="date" name="expiration_date[]" placeholder="賞味期限"
                 value="{{ $dates[$i] ?? '' }}"
                 class="border px-2 py-1 h-10 rounded">
-            
+
             @error("name.$i")
             <p class="text-red-500 text-sm">{{ $message }}</p>
             @enderror
@@ -27,17 +27,17 @@
         @endforeach
     </div>
 
-    <button type="button" onclick="addIngredientRow()" class="text-blue-600 underline">+ 行を追加</button>
+    <button type="button" onclick="addIngredientRow()" class="text-sky-300 underline">+ 行を追加</button>
 
     <br><br>
-    <button type="submit" class="px-4 py-2 bg-blue-500 text-red rounded">一括登録</button>
+    <button type="submit" class="px-4 py-2 bg-orange-400 text-white rounded">一括登録</button>
 </form>
 
 <h2>お気に入り食材から選ぶ</h2>
 <ul class="flex flex-wrap gap-2 mt-2">
     @foreach ($recommend as $item)
         <li>
-            <button class="relative overflow-hidden rounded-md bg-neutral-950 px-4 py-2 text-white transition-all duration-300 [transition-timing-function:cubic-bezier(0.175,0.885,0.32,1.275)] active:-translate-y-1 active:scale-x-90 active:scale-y-110"
+            <button class="relative overflow-hidden rounded-md bg-purple-200 px-4 py-2 text-gray-500 hover:text-gray-700 transition-all duration-300 [transition-timing-function:cubic-bezier(0.175,0.885,0.32,1.275)] active:-translate-y-1 active:scale-x-90 active:scale-y-110"
                 type="button" onclick="addFavoriteIngredientRow('{{ $item->name }}')">
             {{ $item->name }}
             </button>
